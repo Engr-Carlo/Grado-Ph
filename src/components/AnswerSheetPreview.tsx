@@ -41,7 +41,9 @@ export default function AnswerSheetPreview({ config }: AnswerSheetPreviewProps) 
   const paperClass =
     paperSize === "a4"
       ? "w-[210mm] min-h-[297mm]"
-      : "w-[8.5in] min-h-[11in]";
+      : paperSize === "folio"
+        ? "w-[8.5in] min-h-[13in]"
+        : "w-[8.5in] min-h-[11in]";
 
   // Build bubble rows for a column
   const buildColumn = (start: number, end: number) => {

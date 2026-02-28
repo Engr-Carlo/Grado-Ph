@@ -5,7 +5,7 @@ import { useState, useCallback } from "react";
 export interface SheetConfigData {
   numItems: number;
   choicesPerItem: 4 | 5;
-  paperSize: "a4" | "letter";
+  paperSize: "a4" | "letter" | "folio";
   showName: boolean;
   showStudentId: boolean;
   showSection: boolean;
@@ -15,12 +15,7 @@ export interface SheetConfigData {
 }
 
 function generateTestId(): string {
-  const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-  let result = "TX-";
-  for (let i = 0; i < 4; i++) {
-    result += chars.charAt(Math.floor(Math.random() * chars.length));
-  }
-  return result;
+  return String(Math.floor(10000 + Math.random() * 90000));
 }
 
 interface SheetConfigProps {
@@ -32,7 +27,7 @@ interface SheetConfigProps {
 export default function SheetConfig({ onGenerate, onPrint, hasSheet }: SheetConfigProps) {
   const [numItems, setNumItems] = useState<number>(50);
   const [choicesPerItem, setChoicesPerItem] = useState<4 | 5>(4);
-  const [paperSize, setPaperSize] = useState<"a4" | "letter">("a4");
+  const [paperSize, setPaperSize] = useState<"a4" | "letter" | "folio">("a4");
   const [showName, setShowName] = useState(true);
   const [showStudentId, setShowStudentId] = useState(true);
   const [showSection, setShowSection] = useState(true);
@@ -120,6 +115,17 @@ export default function SheetConfig({ onGenerate, onPrint, hasSheet }: SheetConf
             }`}
           >
             US Letter
+          </button>
+          <button
+            type="button"
+            onClick={() => setPaperSize("folio")}
+            className={`flex-1 px-3 py-2 text-sm rounded-md border transition-colors ${
+              paperSize === "folio"
+                ? "bg-gray-900 text-white border-gray-900"
+                : "bg-white text-gray-700 border-gray-300 hover:bg-gray-50"
+            }`}
+          >
+            8.5×13
           </button>
         </div>
       </div>
