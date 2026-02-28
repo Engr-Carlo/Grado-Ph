@@ -9,7 +9,7 @@ export default function Navbar() {
   const navLinks = [
     { href: "/", label: "Home" },
     { href: "/create", label: "Create Sheet" },
-    { href: "/scan", label: "Scan", disabled: true },
+    { href: "/scan", label: "Scan" },
     { href: "/results", label: "Results", disabled: true },
   ];
 
@@ -19,8 +19,8 @@ export default function Navbar() {
         <Link href="/" className="text-xl font-bold text-gray-900">
           Grado Ph
         </Link>
-        <span className="text-xs font-semibold bg-red-100 text-red-700 px-2 py-1 rounded-full">
-          Phase 1 🔴 Active
+        <span className="text-xs font-semibold bg-yellow-100 text-yellow-700 px-2 py-1 rounded-full">
+          Phase 2a 🟡 Active
         </span>
       </div>
 
