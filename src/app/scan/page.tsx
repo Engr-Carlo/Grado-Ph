@@ -19,7 +19,7 @@ type ScanPhase = "scanning" | "processing" | "result";
 // ── Page ───────────────────────────────────────────────────────────
 
 export default function ScanPage() {
-  const { ready: cvReady, loading: cvLoading, error: cvError, cv } = useOpenCV();
+  const { ready: cvReady, loading: cvLoading, error: cvError, cv, statusText: cvStatus } = useOpenCV();
 
   const cameraRef = useRef<CameraFeedHandle>(null);
 
@@ -137,8 +137,9 @@ export default function ScanPage() {
       <div className="fixed inset-0 bg-gray-950 flex flex-col items-center justify-center text-white z-50">
         <div className="w-10 h-10 border-3 border-white border-t-transparent rounded-full animate-spin mb-4" />
         <p className="text-sm text-gray-400 mb-1">Loading scanner engine...</p>
-        <p className="text-xs text-gray-600">
-          Downloading OpenCV.js (~8 MB, first time only)
+        <p className="text-xs text-gray-500 mb-2">{cvStatus}</p>
+        <p className="text-xs text-gray-700">
+          First load may take a few seconds
         </p>
       </div>
     );
